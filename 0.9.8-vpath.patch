@@ -1,0 +1,32 @@
+--- origsrc/psiconv-0.9.8/lib/psiconv/Makefile.am	2004-04-29 17:09:30.000000000 -0500
++++ src/psiconv-0.9.8/lib/psiconv/Makefile.am	2009-04-27 21:45:21.873375000 -0500
+@@ -1,4 +1,4 @@
+-INCLUDES=-I.. -I../../compat
++INCLUDES=-I$(top_srcdir)/lib -I$(top_srcdir)/compat
+ 
+ lib_LTLIBRARIES = libpsiconv.la
+ libpsiconv_la_SOURCES = configuration.c error.c misc.c checkuid.c list.c \
+--- origsrc/psiconv-0.9.8/program/extra/Makefile.am	2004-02-09 16:02:29.000000000 -0600
++++ src/psiconv-0.9.8/program/extra/Makefile.am	2009-04-27 19:42:40.779625000 -0500
+@@ -1,4 +1,4 @@
+-INCLUDES=-I../../lib -I../../compat
++INCLUDES=-I$(top_srcdir)/lib -I$(top_srcdir)/compat
+ 
+ noinst_PROGRAMS = checkuid rewrite empty
+ rewrite_LDADD = ../../lib/psiconv/libpsiconv.la @LIB_DMALLOC@
+--- origsrc/psiconv-0.9.8/program/psiconv/Makefile.am	2004-02-02 12:08:48.000000000 -0600
++++ src/psiconv-0.9.8/program/psiconv/Makefile.am	2009-04-27 19:42:57.545250000 -0500
+@@ -1,4 +1,4 @@
+-INCLUDES=-I../.. -I../../lib -I../../compat
++INCLUDES=-I$(top_srcdir) -I$(top_srcdir)/lib -I$(top_srcdir)/compat
+ 
+ bin_PROGRAMS = psiconv
+ psiconv_SOURCES = psiconv.c general.c magick-aux.c \
+--- origsrc/psiconv-0.9.8/program/psiconv-config/Makefile.am	2004-02-10 10:39:43.000000000 -0600
++++ src/psiconv-0.9.8/program/psiconv-config/Makefile.am	2009-04-27 19:42:50.389000000 -0500
+@@ -1,4 +1,4 @@
+-INCLUDES=-I../.. -I../../lib -I../../compat
++INCLUDES=-I$(top_srcdir) -I$(top_srcdir)/lib -I$(top_srcdir)/compat
+ 
+ bin_SCRIPTS = psiconv-config
+ BUILT_SOURCES = psiconv-config psiconv-config.man

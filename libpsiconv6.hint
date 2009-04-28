@@ -1,5 +1,5 @@
 category: Graphics Math Text
-requires: cygwin
+requires: cygwin libgcc1
 external-source: psiconv
 sdesc: "Psion 5 document conversion (runtime lib)"
 ldesc: "This package is meant to make the Psion 5 series of PDAs, as 

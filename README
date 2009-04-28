@@ -11,19 +11,20 @@ The package consists of several parts:
     more commonly used formats.
 
 Runtime requirements:
-  cygwin-1.5.25-7
-  libMagick1-6.3.9.8-1
+  cygwin-1.7.0-45
+  libgcc1-4.3.2-2
+  libImageMagick1-6.4.0.6-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf2.5-2.61-1
-  automake1.8-1.8.5-3
-  binutils-20060817-1
-  cygport-0.3.9-1
-  gawk-3.1.6-1
-  gcc-core-3.4.4-3
-  libtool-2.2.2-1
-  make-3.81-1
+  autoconf2.5-2.63-10
+  automake1.8-1.8.5-10
+  binutils-20080624-2
+  cygport-0.9.6-1
+  gawk-3.1.6-2
+  gcc4-core-4.3.2-2
+  libtool-2.2.7a-12
+  make-3.81-2
   sed-4.1.5-2
 
 Canonical website:
@@ -52,14 +53,15 @@ This will create:
 Files included in the binary package:
 
 (psiconv)
+  /etc/psiconv/psiconv.conf
+  /etc/psiconv/psiconv.conf.eg
   /usr/bin/psiconv.exe
-  /usr/share/doc/psiconv-0.9.8/AUTHORS
-  /usr/share/doc/psiconv-0.9.8/COPYING
-  /usr/share/doc/psiconv-0.9.8/ChangeLog
-  /usr/share/doc/psiconv-0.9.8/INSTALL
-  /usr/share/doc/psiconv-0.9.8/NEWS
-  /usr/share/doc/psiconv-0.9.8/README
-  /usr/share/doc/psiconv-0.9.8/TODO
+  /usr/share/doc/psiconv/AUTHORS
+  /usr/share/doc/psiconv/COPYING
+  /usr/share/doc/psiconv/ChangeLog
+  /usr/share/doc/psiconv/NEWS
+  /usr/share/doc/psiconv/README
+  /usr/share/doc/psiconv/TODO
   /usr/share/man/man1/psiconv.1.gz
   /usr/share/psiconv/psion/ASCII_Codes.psi
   /usr/share/psiconv/psion/Application_ID_Section.psi
@@ -113,8 +115,6 @@ Files included in the binary package:
   /usr/share/psiconv/psion/World_Data_File.psi
 
 (libpsiconv6)
-  /etc/psiconv/psiconv.conf
-  /etc/psiconv/psiconv.conf.eg
   /usr/bin/cygpsiconv-6.dll
 
 (libpsiconv-devel)
@@ -131,6 +131,7 @@ Files included in the binary package:
   /usr/include/psiconv/parse.h
   /usr/include/psiconv/parse_routines.h
   /usr/include/psiconv/unicode.h
+  /usr/lib/libpsiconv.a
   /usr/lib/libpsiconv.dll.a
   /usr/lib/libpsiconv.la
   /usr/share/man/man1/psiconv-config.1.gz
@@ -139,8 +140,8 @@ Files included in the binary package:
 
 Port Notes:
 
------ version 0.9.8-1 -----
-Initial release for Cygwin.
+----- version 0.9.8-10 -----
+Initial release for Cygwin 1.7.
 
 
 Cygwin port maintained by:
