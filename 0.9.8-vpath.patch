@@ -1,3 +1,39 @@
+--- origsrc/psiconv-0.9.8/formats/Makefile.am	2004-02-23 07:16:25.000000000 -0600
++++ src/psiconv-0.9.8/formats/Makefile.am	2013-08-08 15:57:16.453666700 -0500
+@@ -63,7 +63,7 @@ PSIONFILES=$(GENERATE)
+ if XHTMLDOCS
+ 	rm -rf xhtml
+ 	mkdir xhtml
+-	./generate_xhtml.sh .. xhtml $(GENERATE) 
++	$(srcdir)/generate_xhtml.sh .. xhtml $(addprefix $(srcdir)/,$(GENERATE))
+ 	touch .touch-xhtml
+ 
+ XHTMLDOCFILES=$(patsubst %.psi,%.html,$(patsubst psion/%,xhtml/%,$(GENERATE)))
+--- origsrc/psiconv-0.9.8/formats/generate_xhtml.sh	2004-02-23 07:18:57.000000000 -0600
++++ src/psiconv-0.9.8/formats/generate_xhtml.sh	2013-08-08 15:58:31.897981900 -0500
+@@ -8,6 +8,8 @@ if test "$#" -lt 3 ; then
+   exit 1
+ fi
+ 
++srcdir=$(cd $(dirname $0); pwd)
++
+ if ! test -d "$1"/program/psiconv ; then
+   echo "First parameter should be base psiconv directory!"
+   exit 1
+@@ -29,10 +31,10 @@ libtool=$basedir/libtool
+ psiconv=$basedir/program/psiconv/psiconv
+ indexfile=$outputdir/index
+ tempdir=$outputdir/.temp
+-mkindex=$basedir/formats/index_html.sh
++mkindex=$srcdir/index_html.sh
+ index=$tempdir/index
+-mkdef=$basedir/formats/xhtml_links.sh
+-config="$basedir/formats/psiconv.conf"
++mkdef=$srcdir/xhtml_links.sh
++config="$srcdir/psiconv.conf"
+ 
+ 
+ echo "Going to create the intermediate files..."
 --- origsrc/psiconv-0.9.8/lib/psiconv/Makefile.am	2004-04-29 17:09:30.000000000 -0500
 +++ src/psiconv-0.9.8/lib/psiconv/Makefile.am	2009-04-27 21:45:21.873375000 -0500
 @@ -1,4 +1,4 @@
