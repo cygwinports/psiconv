@@ -1,6 +1,6 @@
 NAME="psiconv"
 VERSION=0.9.8
-RELEASE=11
+RELEASE=12
 CATEGORY="Libs"
 SUMMARY="Psion Series 5 document conversion library"
 DESCRIPTION="This package is meant to make the Psion 5 series of PDAs, as
@@ -8,9 +8,11 @@ well as other small computers running EPOC 32, more usable to non-Windows
 users."
 HOMEPAGE="http://software.frodo.looijaard.name/psiconv/"
 SRC_URI="http://software.frodo.looijaard.name/psiconv/files/${P}.tar.gz"
-
-PATCH_URI="0.9.8-no-undefined.patch
-           0.9.8-vpath.patch"
+PATCH_URI="
+	0.9.8-no-undefined.patch
+	0.9.8-vpath.patch
+	0.9.8-ImageMagick69.patch
+"
 
 PKG_NAMES="${NAME} ${NAME}-doc lib${NAME}6 lib${NAME}-devel"
 psiconv_CATEGORY="Text"
