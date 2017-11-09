@@ -1,0 +1,60 @@
+--- origsrc/psiconv-0.9.9/configure.in	2014-10-22 13:38:11.000000000 -0500
++++ src/psiconv-0.9.9/configure.in	2017-11-08 20:24:37.788201800 -0600
+@@ -88,7 +88,6 @@ if test x"$IMAGEMAGICK" != xno ; then
+ 		 unsigned long number_formats;
+ 	         ExceptionInfo exception;
+ 	         GetExceptionInfo(&exception);
+-	         OpenModules(&exception);
+ 	         GetMagickInfoList("*",&number_formats,&exception);
+ 	         return number_formats == 0; }],
+         IMAGEMAGICK=4,IMAGEMAGICK=no,IMAGEMAGICK=no)
+@@ -101,7 +100,6 @@ if test x"$IMAGEMAGICK" != xno ; then
+ 		   unsigned long number_formats;
+ 	           ExceptionInfo exception;
+ 	           GetExceptionInfo(&exception);
+-	           OpenModules(&exception);
+ 	           GetMagickInfoList("*",&number_formats);
+ 	           return number_formats == 0; }],
+         IMAGEMAGICK=3,IMAGEMAGICK=no,IMAGEMAGICK=no)
+@@ -113,7 +111,6 @@ if test x"$IMAGEMAGICK" != xno ; then
+   		 #include <magick/api.h>
+                    int main(void) { ExceptionInfo exception;
+                    GetExceptionInfo(&exception);
+-                   OpenModules(&exception);
+                    return (NULL ==  GetMagickInfo(NULL,&exception)); }],
+           IMAGEMAGICK=2,IMAGEMAGICK=no,IMAGEMAGICK=no)
+     fi
+@@ -121,7 +118,6 @@ if test x"$IMAGEMAGICK" != xno ; then
+       AC_TRY_RUN([ #include <magick/magick.h>
+                    int main(void) { ExceptionInfo exception;
+                    GetExceptionInfo(&exception);
+-                   OpenModules(&exception);
+                    return (NULL ==  GetMagickInfo(NULL,&exception)); }],
+           IMAGEMAGICK=1,IMAGEMAGICK=no,IMAGEMAGICK=no)
+     fi
+--- origsrc/psiconv-0.9.9/program/psiconv/magick-aux.c	2014-10-22 14:46:07.000000000 -0500
++++ src/psiconv-0.9.9/program/psiconv/magick-aux.c	2017-11-08 20:25:06.032244300 -0600
+@@ -42,7 +42,6 @@ const MagickInfo ** GetMagickFileList(vo
+   const MagickInfo **copy;
+   ExceptionInfo exc;
+   GetExceptionInfo(&exc);
+-  OpenModules(&exc);
+ 
+   mi_ptr = GetMagickInfo(NULL,&exc);
+   for (len = 0, ptr=mi_ptr; ptr != NULL; len++, ptr = ptr->next);
+@@ -63,7 +62,6 @@ const MagickInfo ** GetMagickFileList(vo
+   int i;
+   ExceptionInfo exc;
+   GetExceptionInfo(&exc);
+-  OpenModules(&exc);
+   mi = GetMagickInfoList("*",&len);
+   copy = malloc((len+1) * sizeof(*copy));
+   for (i = 0; i < len; i++) {
+@@ -83,7 +81,6 @@ const MagickInfo ** GetMagickFileList(vo
+   int i;
+   ExceptionInfo exc;
+   GetExceptionInfo(&exc);
+-  OpenModules(&exc);
+   mi = GetMagickInfoList("*",&len,&exc);
+   copy = malloc((len+1) * sizeof(*copy));
+   for (i = 0; i < len; i++) {

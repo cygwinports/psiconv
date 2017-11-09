@@ -1,32 +1,47 @@
 NAME="psiconv"
-VERSION=0.9.8
-RELEASE=12
+VERSION=0.9.9
+RELEASE=1
 CATEGORY="Libs"
 SUMMARY="Psion Series 5 document conversion library"
 DESCRIPTION="This package is meant to make the Psion 5 series of PDAs, as
 well as other small computers running EPOC 32, more usable to non-Windows
 users."
-HOMEPAGE="http://software.frodo.looijaard.name/psiconv/"
-SRC_URI="http://software.frodo.looijaard.name/psiconv/files/${P}.tar.gz"
+HOMEPAGE="http://frodo.looijaard.name/project/psiconv"
+SRC_URI="http://frodo.looijaard.name/system/files/software/psiconv/psiconv-${VERSION}.tar.gz"
 PATCH_URI="
 	0.9.8-no-undefined.patch
 	0.9.8-vpath.patch
-	0.9.8-ImageMagick69.patch
+	0.9.9-ImageMagick-no-modules.patch
 "
 
 PKG_NAMES="${NAME} ${NAME}-doc lib${NAME}6 lib${NAME}-devel"
 psiconv_CATEGORY="Text"
 psiconv_SUMMARY=${SUMMARY/library/utility}
-psiconv_CONTENTS="etc/ usr/bin/*.exe usr/share/doc/${NAME}/[ACNRT]* usr/share/man/man1/psiconv.1*"
+psiconv_CONTENTS="
+	etc/
+	usr/bin/*.exe
+	usr/share/doc/${NAME}/[ACNRT]*
+	usr/share/man/man1/psiconv.1*
+	usr/share/man/man5/psiconv.conf.5*
+"
 psiconv_doc_CATEGORY="Doc"
 psiconv_doc_CONTENTS="usr/share/doc/${NAME}/*/"
-libpsiconv6_CONTENTS="usr/bin/*-6.dll"
-libpsiconv_devel_CONTENTS="usr/bin/*-config usr/include/ usr/lib/ usr/share/man/man1/*-config.*"
-
-WANT_AUTOMAKE=1.9
+libpsiconv6_CONTENTS="usr/bin/cygpsiconv-6.dll"
+libpsiconv_devel_CONTENTS="
+	usr/bin/*-config
+	usr/include/psiconv/
+	usr/lib/libpsiconv.dll.a
+	usr/share/man/man1/*-config.*
+"
 
 CYGCONF_ARGS="--with-imagemagick"
 # these are just docs
 MAKEOPTS+=" pkgdatadir=/usr/share/doc/${NAME}"
 
-KEEP_LA_FILES="none"
+src_install() {
+	cd ${B}
+	cyginstall
+
+	rm ${D}/etc/psiconv/psiconv.conf.eg
+	make_etc_defaults /etc/psiconv/psiconv.conf
+}
